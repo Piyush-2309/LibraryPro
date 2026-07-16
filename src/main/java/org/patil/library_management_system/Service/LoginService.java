@@ -1,0 +1,29 @@
+package org.patil.library_management_system.Service;
+
+import org.patil.library_management_system.Entity.Admin;
+import org.patil.library_management_system.Repository.AdminRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Objects;
+import java.util.Optional;
+
+@Service
+public class LoginService
+{
+    @Autowired
+    private AdminRepository adminRepository;
+
+    public boolean adminLogin(Admin admin)
+    {
+        Optional<Admin> oldAdmin = adminRepository.findByAdminEmail(admin.getAdmin_email());
+        if(oldAdmin.isPresent())
+        {
+            Admin previousAdmin = oldAdmin.get();
+            return Objects.equals(previousAdmin.getAdmin_password(), admin.getAdmin_password());
+        }
+        return false;
+    }
+
+
+}
