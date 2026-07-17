@@ -17,6 +17,4 @@ public class Author {
 
     private long author_id;
 
-    @ManyToMany(mappedBy = "authorList")
-    private List<Book> books;
 }

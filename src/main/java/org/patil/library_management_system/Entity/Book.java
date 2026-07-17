@@ -20,6 +20,7 @@ public class Book {
 
     private long book_price;
 
-    @ManyToMany
-    private List<Author> authorList;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 }
